@@ -11,12 +11,11 @@ The objection of this program is to generate a password constructed from user in
 ### Utilizing Objects for Organization
 When the button is clicked, the JavaScript logic runs a function generatePassword() that constructs an object titled passInfo, which contains necessary information given by the user. For this object, the properties are calling various functions that will return required data such as password length and what character types to include.
 
-![A screenshot showing the use of JavaScript objects and properties](/Assets/images/objectREADME.png)
-
 The first of these object property functions ask the user for the password length, checks that it is within the restraints of 8 <= password <= 128, and ensures the user did not leave the prompt empty/null.
 
 The remaining four property functions return boolean logic from the user that decides if numerals, lowercase, uppercase, and/or special characters should be included in the password. If all four boolean conditions return false, then the user is reminded that the password has to contain at least one data type and returns the user to the beginning of the generatePassword() function.
 
+![A screenshot showing the use of JavaScript objects and properties](/Assets/images/objectREADME.png)
 ![A screenshot showing the object property functions and what data they provide for the code logic](/Assets/images/propertyFunctions.png)
 
 ### Switch Statements for Logic
@@ -31,7 +30,7 @@ Once the passInfo object contains all its data. An empty array titled *empty* is
 ## Limitations
 While the logic works, I understand how this computational method could be cumbersome or perhaps compute slower than other methods of generating a random password due to how I decided to utilize a switch case and manipulate the counter. Instead of somehow telling the computer, if charType 2 (which represents lowercase) is false then never populate the option to include it- I keep the for loop running on the same index until a valid character type is randomly computed. I did ponder other ways to create the password but thought this logic would be unique when compared to the other students' code so I stuck with it.
 
-View the live page [here]()
+View the live page [here](https://ahudg.github.io/secure-password-gen/)
 
 ## Contributions
 Made by Andrew Hudgins :) 
