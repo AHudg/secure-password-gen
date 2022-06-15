@@ -32,9 +32,21 @@ var confirmNumerical = function() {
   return wantNumeral;
 }
 
+var selectNumerical = function() {
+  var possibleChars = "0123456789";
+  var selectedChar = possibleChars[randomNumber(0,possibleChars.length-1)];
+  return selectedChar;
+}
+
 var confirmLower = function() {
   var wantLower = window.confirm("Do you want to use lowercase character in your password?");
   return wantLower;
+}
+
+var selectLower = function() {
+  var possibleChars = "abcdefghijklmnopqrstuvwxyz";
+  var selectedChar = possibleChars[randomNumber(0,possibleChars.length-1)];
+  return selectedChar;
 }
 
 var confirmUpper = function() {
@@ -42,9 +54,21 @@ var confirmUpper = function() {
   return wantUpper;
 }
 
+var selectUpper = function() {
+  var possibleChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var selectedChar = possibleChars[randomNumber(0,possibleChars.length-1)];
+  return selectedChar;
+}
+
 var confirmSpecial = function() {
   var wantSpecial = window.confirm("Do you want to use special characters in the password?");
   return wantSpecial;
+}
+
+var selectSpecial = function() {
+  var possibleChars = "!@#$%^&*-=+";
+  var selectedChar = possibleChars[randomNumber(0,possibleChars.length-1)];
+  return selectedChar;
 }
 
 var randomNumber = function(min,max) {
@@ -52,33 +76,6 @@ var randomNumber = function(min,max) {
   return value;
 }
 
-var selectNumerical = function() {
-  randomNumber(0,9);
-  var numbers = "0123456789";
-  var number = numbers[Math.floor(Math.random() * numbers.length)];
-  return number;
-}
-
-var selectLower = function() {
-  randomNumber(0,26);
-  var totalAlphabet = "abcdefghijklmnopqrstuvwxyz";
-  var alphabet = totalAlphabet[Math.floor(Math.random() * totalAlphabet.length)];
-  return alphabet;
-}
-
-var selectUpper = function() {
-  randomNumber(0,26);
-  var totalAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  var alphabet = totalAlphabet[Math.floor(Math.random() * totalAlphabet.length)];
-  return alphabet;
-}
-
-var selectSpecial = function() {
-  randomNumber(0,11);
-  var totalAlphabet = "!@#$%^&*-=+";
-  var alphabet = totalAlphabet[Math.floor(Math.random() * totalAlphabet.length)];
-  return alphabet;
-}
 
 var generatePassword = function() {
   window.alert("Let's make you a secure pasword!");
@@ -90,36 +87,53 @@ var generatePassword = function() {
     special: confirmSpecial()
   }
 
+  if ((!passInfo.numerical) && (!passInfo.lowercase) && (!passInfo.uppercase) && (!passInfo.special)) {
+    alert("You must select at least one type of character to comprise your password.");
+    return generatePassword();
+  }
+
   var empty = Array(passInfo.indexes);
   for (var i = 0; i < passInfo.indexes; i++) {
-    // outputs 1 - 4
-    // create a function containing an if statement with my confirmParameters truths
     var charType = randomNumber(1,4);
-    debugger;
     switch (charType) {
       case 1:
-        empty[i] = selectNumerical();
+        if (passInfo.numerical) {
+          empty[i] = selectNumerical();
+        }
+        else {
+          i--;
+        }
         break;
       case 2:
-        empty[i] = selectLower();
+        if (passInfo.lowercase) {
+          empty[i] = selectLower();
+        }
+        else {
+          i--;
+        }
         break;
       case 3:
-        empty[i] = selectUpper();
+        if (passInfo.uppercase) {
+          empty[i] = selectUpper();
+        }
+        else {
+          i--;
+        }
         break;
       case 4:
+        if (passInfo.special) {
         empty[i] = selectSpecial();
+        }
+        else {
+          i--;
+        }
         break;
       default:
         window.alert("You must select at least one type of character");
     }
   }
-
-  // console.log(empty);
-  // for (var i = 0; i < passInfo.indexes; i++) {
-  //   // var fakePassword[i] = empty.push(i);
-  //   // console.log(fakePassword);
-  // }
-  // return password
+  console.log(empty);
+  return empty.join('');
 }
 
 // Add event listener to generate button
