@@ -112,7 +112,7 @@ var generatePassword = function() {
       default:
         window.alert("You must select at least one type of character");
     }
-   }
+  }
 
   // console.log(empty);
   // for (var i = 0; i < passInfo.indexes; i++) {
