@@ -17,10 +17,10 @@ var getPasswordLength = function() {
   passLength = parseInt(passLength);
   if (passLength < 8) {
     window.alert("Your password has to fit the parameter of 8 - 128 characters. Please try again.");
-    getPasswordLength();
+    return getPasswordLength();
   } else if (passLength > 128) {
     window.alert("Your password has to fit the parameter of 8 - 128 characters. Please try again.");
-    getPasswordLength();
+    return getPasswordLength();
   } else {
     console.log("You selected a password of " + passLength + " characters long.");
     return passLength;
